@@ -20,6 +20,7 @@ const { log } = labeledLogger();
  *
  * @throws {Error} {status number}: {status text}
  */
+
 const getUserName = (id = 1) => {
     log('fetching user ' + id);
     const userPromise = fetchUserById(id);

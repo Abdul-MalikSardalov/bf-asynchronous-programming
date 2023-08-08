@@ -1,5 +1,4 @@
 import { labeledLogger } from '../../../lib/labeled-logger.js';
-
 import { fetchUserById } from '../../../lib/fetch-user-by-id/index.js';
 
 const { log } = labeledLogger();
@@ -8,7 +7,16 @@ const { log } = labeledLogger();
  *
  * @async
  */
-const usernameAndEmail = async () => {};
+const usernameAndEmail = async (id = 1) => {
+    try {
+        const userData = await fetchUserById(id);
+        const userInfo = `${userData.id}. ${userData.username}, ${userData.email}`;
+        return userInfo;
+    } catch {
+        const error = 'Something wrong';
+        console.error(error);
+    }
+};
 
 describe("usernameAndEmail returns the user's id, name and email", () => {
     it("returns user 2's info", async () => {

@@ -25,7 +25,7 @@ const { log, error } = labeledLogger();
 */
 
 // --- declare the callbacks ---
-
+debugger;
 const logUser = (theUser) => {
     // debugger;
     log(`user ${theUser.id}:`, theUser);
