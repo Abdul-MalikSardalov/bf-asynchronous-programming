@@ -3,9 +3,28 @@ import { fetchUserById } from '../../../lib/fetch-user-by-id/index.js';
 // --- declare function ---
 
 /**
+ * Creates user summaries based on their IDs.
+ *
+ * This function fetches user data using the provided IDs and returns an array of user summaries.
+ *
+ * @param {number[]} ids - An array of user IDs for which summaries need to be created.
+ * @returns {Promise<Array<{ name: string, city: string, companyName: string }>>} A promise that resolves to an array of user summaries.
+ * @throws {Error} If there is an issue fetching user data or processing the summaries.
  *
  */
-const createSummaries = async (ids = []) => {};
+
+const createSummaries = async (ids = []) => {
+    const promises = ids.map((id) => fetchUserById(id)); // array of promises
+    const data = await Promise.all(promises); // returning data
+
+    const userInfo = data.map((user) => ({
+        name: user.name,
+        city: user.address.city,
+        companyName: user.company.name,
+    }));
+
+    return userInfo;
+};
 
 // --- --- tests --- ---
 

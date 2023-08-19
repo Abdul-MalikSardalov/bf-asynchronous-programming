@@ -1,9 +1,24 @@
 import { fetchUserById } from '../../../lib/fetch-user-by-id/index.js';
 
 /**
- *
+ * Retrieves introduction information for a list of user IDs.
+ * @param {Array<number>} ids - An array of user IDs.
+ * @returns {Promise<string>} A promise that resolves to a string containing
+ *   introduction information for each user.
+ * @async
  */
-const getIntros = async (ids = []) => {};
+
+const getIntros = async (ids = []) => {
+    const userPromises = ids.map((id) => fetchUserById(id)); // returns new array with promises
+    const users = await Promise.all(userPromises); // make promises like data
+
+    // looping to our data and return messages
+    const info = users.map((user) => {
+        return `${user.id}: Hello, my name is ${user.name}`;
+    });
+
+    return info;
+};
 
 // --- --- tests --- ---
 

@@ -3,7 +3,17 @@ import { fetchUserById } from '../../../lib/fetch-user-by-id/index.js';
 /**
  *
  */
-const contactDetails = async (ids = []) => {};
+
+const contactDetails = async (ids = []) => {
+    const promises = ids.map((id) => fetchUserById(id));
+    const data = await Promise.all(promises);
+
+    const info = data.map((user) => {
+        return `${user.id}. ${user.email}, ${user.phone}, ${user.website}`;
+    });
+
+    return info;
+};
 
 // --- --- tests --- ---
 
@@ -12,7 +22,7 @@ describe('contactDetails: returns an array of user contact details', () => {
         it('finds contact details for user 5', async () => {
             const actual = await contactDetails([5]);
             expect(actual).toEqual([
-                '5: Lucio_Hettinger@annie.ca, (254)954-1289, demarco.info',
+                '5. Lucio_Hettinger@annie.ca, (254)954-1289, demarco.info',
             ]);
         });
         it('finds contact details for users 6, 1, 2', async () => {

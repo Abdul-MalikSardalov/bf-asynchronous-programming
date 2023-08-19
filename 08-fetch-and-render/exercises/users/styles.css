@@ -1,3 +1,45 @@
-.todo {
+@import url('https://css.gg/css?=|search');
+/* .todo {
     border-top: solid black 1px;
+} */
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #191e2f;
+}
+
+.form input {
+    border-radius: 5px;
+}
+
+#root {
+    margin-top: 15px;
+    width: 270px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #96a1eb;
+}
+
+#root a {
+    text-decoration: none;
+}
+
+.error {
+    font-size: large;
+    border: 1px solid black;
+    width: 250px;
+    align-items: center;
+    text-align: center;
+    height: 30px;
+    padding-top: 8px;
+    border-radius: 5px;
+    background-color: #8978e9;
+}
+
+.hidden {
+    display: none;
 }
